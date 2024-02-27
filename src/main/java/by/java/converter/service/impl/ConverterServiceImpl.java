@@ -22,7 +22,6 @@ public class ConverterServiceImpl implements ConverterService {
 
     @Override
     public List<String> getAllCurrencies() {
-        //return MonetaryConversions.getDefaultConversionProviderChain();
-        return Monetary.getCurrencies().stream().map(CurrencyUnit::getCurrencyCode).sorted().collect(Collectors.toList());
+        return Monetary.getCurrencies().stream().map(CurrencyUnit::getCurrencyCode).sorted().toList();
     }
 }
