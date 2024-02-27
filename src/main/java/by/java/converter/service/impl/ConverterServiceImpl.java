@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
-import javax.money.convert.MonetaryConversions;
-import javax.money.spi.MonetaryCurrenciesSingletonSpi;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
