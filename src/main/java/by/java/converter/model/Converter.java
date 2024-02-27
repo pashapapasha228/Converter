@@ -11,17 +11,18 @@ import javax.money.convert.MonetaryConversions;
 @Builder
 @AllArgsConstructor
 public class Converter {
-    private String index1;
-    private double value1;
-    private String index2;
-    private double value2;
+    private String string_code1;
+    private double amount1;
+    private String string_code2;
+    private double amount2;
 
     public void getConvertation() {
-        Money money1 = Money.of(value1, index1);
+        Money money1 = Money.of(amount1, string_code1);
 
-        if(MonetaryConversions.getExchangeRateProvider().getExchangeRate(index1, index2).isDerived()) {
-            Money money2 = money1.with(MonetaryConversions.getExchangeRateProvider().getCurrencyConversion(index2));
-            value2 = money2.getNumber().doubleValue();
+        if(MonetaryConversions.getExchangeRateProvider().getExchangeRate(string_code1, string_code2).isDerived()) {
+            Money money2 = money1.with(MonetaryConversions.getExchangeRateProvider()
+                    .getCurrencyConversion(string_code2));
+            amount2 = money2.getNumber().doubleValue();
         }
 
     }

@@ -8,14 +8,13 @@ import org.springframework.stereotype.Service;
 import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class ConverterServiceImpl implements ConverterService {
     @Override
-    public Converter convert(double val1, String name1, String name2) {
-        Converter converter = new Converter(name1, val1, name2, 0);
+    public Converter convert(double amount1, String string_code1, String string_code2) {
+        Converter converter = new Converter(string_code1, amount1, string_code2, 0);
         converter.getConvertation();
         return converter;
     }
