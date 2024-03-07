@@ -10,7 +10,7 @@
 - Конвертация валют;
 
 Пример запроса для конвертации валют:
-localhost:8080/api/v1/converter/convert?val1=100&name1=USD&name2=EUR
+localhost:8080/api/v1/converter/convert?amount1=100&stringCode1=USD&stringCode2=EUR
 
 Получить список всех валют:
 localhost:8080/api/v1/converter/showAll
