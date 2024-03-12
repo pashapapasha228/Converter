@@ -17,10 +17,10 @@ public class Converter {
     private double amountOut;
 
     public void getConversion() {
-        Money money1 = Money.of(amountIn, currencyIn);
+        Money moneyIn = Money.of(amountIn, currencyIn);
 
-        Money money2 = money1.with(MonetaryConversions.getExchangeRateProvider()
+        Money moneyOut = moneyIn.with(MonetaryConversions.getExchangeRateProvider()
                     .getCurrencyConversion(currencyOut));
-        amountOut = money2.getNumber().doubleValue();
+        amountOut = moneyOut.getNumber().doubleValue();
     }
 }
