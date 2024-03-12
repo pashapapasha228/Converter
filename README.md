@@ -10,7 +10,7 @@
 - Конвертация валют;
 
 Пример запроса для конвертации валют:
-localhost:8080/api/v1/converter/convert?amount1=100&stringCode1=USD&stringCode2=EUR
+localhost:8080/api/v1/converter/convert?amountIn=1.2&currencyIn=USD&currencyOut=CNY
 
 Получить список всех валют:
 localhost:8080/api/v1/converter/showAll
