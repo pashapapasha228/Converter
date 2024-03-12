@@ -4,7 +4,7 @@ import by.java.converter.model.Converter;
 import java.util.List;
 
 public interface ConverterService {
-    Converter convert(double amount1, String stringCode1, String stringCode2);
+    Converter convert(double amountIn, String currencyIn, String currencyOut);
 
     List<String> getAllCurrencies();
 }

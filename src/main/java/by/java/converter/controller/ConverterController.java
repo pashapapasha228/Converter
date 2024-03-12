@@ -15,9 +15,9 @@ public class ConverterController {
     private final ConverterServiceImpl converterService;
 
     @GetMapping("/convert")
-    public Converter convert(@RequestParam("amount1") Double amount1, @RequestParam("stringCode1") String stringCode1,
-                             @RequestParam("stringCode2") String stringCode2) {
-        return converterService.convert(amount1, stringCode1, stringCode2);
+    public Converter convert(@RequestParam("amountIn") Double amountIn, @RequestParam("currencyIn") String currencyIn,
+                             @RequestParam("currencyOut") String currencyOut) {
+        return converterService.convert(amountIn, currencyIn, currencyOut);
     }
 
     @GetMapping("/showAll")
