@@ -15,7 +15,7 @@ public class ConverterServiceImpl implements ConverterService {
     @Override
     public Converter convert(double amountIn, String currencyIn, String currencyOut) {
         Converter converter = new Converter(currencyIn, amountIn, currencyOut, 0);
-        converter.getConvertation();
+        converter.getConversion();
         return converter;
     }
 

@@ -16,7 +16,7 @@ public class Converter {
     private String currencyOut;
     private double amountOut;
 
-    public void getConvertation() {
+    public void getConversion() {
         Money money1 = Money.of(amountIn, currencyIn);
 
         Money money2 = money1.with(MonetaryConversions.getExchangeRateProvider()
