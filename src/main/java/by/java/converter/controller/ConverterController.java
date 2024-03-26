@@ -15,6 +15,13 @@ public class ConverterController {
 
     private final ConverterService converterService;
 
+    @GetMapping("/getAll")
+    public ResponseEntity<ResponseDTO> getAll() {
+        ResponseDTO responseDto = converterService.getAll();
+
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
     @PostMapping("/convert")
     public ResponseEntity<ResponseDTO> convert(@RequestBody RequestDTO requestDto) {
         ResponseDTO responseDto = converterService.convert(requestDto);

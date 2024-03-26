@@ -38,10 +38,8 @@ public class ConvertController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         convertService.delete(id);
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

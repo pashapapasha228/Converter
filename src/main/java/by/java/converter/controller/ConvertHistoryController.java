@@ -29,16 +29,14 @@ public class ConvertHistoryController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody ConvertHistoryDTO convertHistoryDTO) {
+    public ResponseEntity<ConvertHistoryDTO> create(@RequestBody ConvertHistoryDTO convertHistoryDTO) {
         convertHistoryService.create(convertHistoryDTO);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         convertHistoryService.delete(id);
-
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

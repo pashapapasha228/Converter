@@ -76,4 +76,18 @@ public class ConverterService {
 
         return new ResponseDTO(converts);
     }
+
+    public ResponseDTO getAll() {
+        List<ConvertDTO> converts = convertRepository.findAll().stream() // Преобразуем конвертации в ДТО
+                .map(convert -> new ConvertDTO(
+                                convert.getId(),
+                                convert.getCurrencyIn(),
+                                convert.getCurrencyOut(),
+                                convert.getAmountIn(),
+                                convert.getAmountOut()
+                        )
+                ).toList();
+
+        return new ResponseDTO(converts);
+    }
 }
