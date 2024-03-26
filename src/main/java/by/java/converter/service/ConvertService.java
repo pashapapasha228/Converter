@@ -61,4 +61,15 @@ public class ConvertService {
 
         convertRepository.delete(convert);
     }
+
+    public void update(Long id, ConvertDTO convertDTO) {
+        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found"));
+
+        convert.setAmountIn(convertDTO.getAmountIn());
+        convert.setAmountOut(convertDTO.getAmountOut());
+        convert.setCurrencyIn(convertDTO.getCurrencyIn());
+        convert.setCurrencyOut(convertDTO.getCurrencyOut());
+
+        convertRepository.save(convert);
+    }
 }

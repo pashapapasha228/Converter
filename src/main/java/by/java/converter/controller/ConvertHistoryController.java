@@ -36,7 +36,12 @@ public class ConvertHistoryController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/update/{id}")
+    public void update(@PathVariable Long id, @RequestBody ConvertHistoryDTO convertHistoryDTOIn) {
+        convertHistoryService.update(id, convertHistoryDTOIn);
+    }
+
+    @DeleteMapping("delete/{id}")
     public void delete(@PathVariable Long id) {
         convertHistoryService.delete(id);
     }

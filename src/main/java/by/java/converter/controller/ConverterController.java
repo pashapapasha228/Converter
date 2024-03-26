@@ -28,5 +28,4 @@ public class ConverterController {
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
-
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ConvertHistoryService {
@@ -47,6 +48,15 @@ public class ConvertHistoryService {
 
         convertHistory.setLocalDateTime(convertHistoryDto.getLocalDateTime());
         convertHistory.setConverts(convertHistoryDto.getConverts());
+
+        convertHistoryRepository.save(convertHistory);
+    }
+
+    public void update(Long id, ConvertHistoryDTO convertHistoryDTOIn) {
+        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found"));
+
+        convertHistory.setLocalDateTime(convertHistoryDTOIn.getLocalDateTime());
+        convertHistory.setConverts(convertHistoryDTOIn.getConverts());
 
         convertHistoryRepository.save(convertHistory);
     }

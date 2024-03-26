@@ -37,7 +37,12 @@ public class ConvertController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/update/{id}")
+    public void update(@PathVariable Long id, @RequestBody ConvertDTO convertDTO) {
+        convertService.update(id, convertDTO);
+    }
+
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {
         convertService.delete(id);
     }
