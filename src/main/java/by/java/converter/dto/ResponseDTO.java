@@ -12,8 +12,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseDto {
+public class ResponseDTO {
 
-    private List<ConvertDto> converts;
+    private List<ConvertDTO> converts;
 
 }

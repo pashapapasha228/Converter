@@ -1,8 +1,8 @@
 package by.java.converter.service;
 
-import by.java.converter.dto.ConvertDto;
-import by.java.converter.dto.RequestDto;
-import by.java.converter.dto.ResponseDto;
+import by.java.converter.dto.ConvertDTO;
+import by.java.converter.dto.RequestDTO;
+import by.java.converter.dto.ResponseDTO;
 import by.java.converter.model.Convert;
 import by.java.converter.model.ConvertHistory;
 import by.java.converter.repository.ConvertHistoryRepository;
@@ -25,7 +25,7 @@ public class ConverterService {
         this.convertHistoryRepository = convertHistoryRepository;
     }
 
-    public ResponseDto convert(RequestDto requestDto) {
+    public ResponseDTO convert(RequestDTO requestDto) {
 
         // Создаем множество конвертаций
         Set<Convert> convertSet = new HashSet<>();
@@ -64,8 +64,8 @@ public class ConverterService {
 
         convertHistoryRepository.save(convertHistory); // сохраняем
 
-        List<ConvertDto> converts = convertSet.stream() // Преобразуем конвертации в ДТО
-                .map(convert -> new ConvertDto(
+        List<ConvertDTO> converts = convertSet.stream() // Преобразуем конвертации в ДТО
+                .map(convert -> new ConvertDTO(
                                 convert.getId(),
                                 convert.getCurrencyIn(),
                                 convert.getCurrencyOut(),
@@ -74,6 +74,6 @@ public class ConverterService {
                         )
                 ).toList();
 
-        return new ResponseDto(converts);
+        return new ResponseDTO(converts);
     }
 }

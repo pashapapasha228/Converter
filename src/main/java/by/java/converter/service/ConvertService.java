@@ -1,6 +1,6 @@
 package by.java.converter.service;
 
-import by.java.converter.dto.ConvertDto;
+import by.java.converter.dto.ConvertDTO;
 import by.java.converter.model.Convert;
 import by.java.converter.repository.ConvertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ public class ConvertService {
         this.convertRepository = convertRepository;
     }
 
-    public List<ConvertDto> getAll() {
+    public List<ConvertDTO> getAll() {
         List<Convert> list = convertRepository.findAll();
 
         return list
                 .stream()
-                .map(convert -> new ConvertDto(
+                .map(convert -> new ConvertDTO(
                                 convert.getId(),
                                 convert.getCurrencyIn(),
                                 convert.getCurrencyOut(),
@@ -33,10 +33,10 @@ public class ConvertService {
                 ).toList();
     }
 
-    public ConvertDto getById(Long id) {
+    public ConvertDTO getById(Long id) {
         Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found"));
 
-        return new ConvertDto(
+        return new ConvertDTO(
                 convert.getId(),
                 convert.getCurrencyIn(),
                 convert.getCurrencyOut(),
@@ -45,7 +45,7 @@ public class ConvertService {
         );
     }
 
-    public void create(ConvertDto convertDto) {
+    public void create(ConvertDTO convertDto) {
         Convert convert = new Convert();
 
         convert.setAmountIn(convertDto.getAmountIn());

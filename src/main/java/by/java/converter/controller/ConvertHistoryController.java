@@ -1,6 +1,5 @@
 package by.java.converter.controller;
 
-import by.java.converter.dto.ConvertDto;
 import by.java.converter.dto.ConvertHistoryDTO;
 import by.java.converter.service.ConvertHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;

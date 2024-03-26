@@ -5,16 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RequestDto {
+public class ConvertDTO {
 
-    private Double amountIn;
+    private Long id;
+
     private String currencyIn;
-    private List<String> currenciesOut;
+    private String currencyOut;
+    private Double amountIn;
+    private Double amountOut;
 
 }
