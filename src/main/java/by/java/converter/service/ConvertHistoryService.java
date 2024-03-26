@@ -34,7 +34,7 @@ public class ConvertHistoryService {
     }
 
     public ConvertHistoryDTO getById(Long id) {
-        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found"));
+        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found by getting"));
 
         return new ConvertHistoryDTO(
                 convertHistory.getId(),
@@ -53,7 +53,7 @@ public class ConvertHistoryService {
     }
 
     public void update(Long id, ConvertHistoryDTO convertHistoryDTOIn) {
-        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found"));
+        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found by updating"));
 
         convertHistory.setLocalDateTime(convertHistoryDTOIn.getLocalDateTime());
         convertHistory.setConverts(convertHistoryDTOIn.getConverts());
@@ -62,7 +62,7 @@ public class ConvertHistoryService {
     }
 
     public void delete(Long id) {
-        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found"));
+        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found by deleting"));
 
         convertHistoryRepository.delete(convertHistory);
     }

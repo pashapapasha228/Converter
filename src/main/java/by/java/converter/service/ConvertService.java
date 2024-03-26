@@ -34,7 +34,7 @@ public class ConvertService {
     }
 
     public ConvertDTO getById(Long id) {
-        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found"));
+        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found by getting"));
 
         return new ConvertDTO(
                 convert.getId(),
@@ -57,13 +57,13 @@ public class ConvertService {
     }
 
     public void delete(Long id) {
-        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found"));
+        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found by deleting"));
 
         convertRepository.delete(convert);
     }
 
     public void update(Long id, ConvertDTO convertDTO) {
-        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found"));
+        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found by updating"));
 
         convert.setAmountIn(convertDTO.getAmountIn());
         convert.setAmountOut(convertDTO.getAmountOut());
