@@ -19,17 +19,17 @@ public class ConvertHistoryController {
         this.convertHistoryService = convertHistoryService;
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<ConvertHistoryDTO>> getAll() {
         return new ResponseEntity<>(convertHistoryService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<ConvertHistoryDTO> getById(@PathVariable Long id) {
         return new ResponseEntity<>(convertHistoryService.getById(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ConvertHistoryDTO> create(@RequestBody ConvertHistoryDTO convertHistoryDTO) {
         convertHistoryService.create(convertHistoryDTO);
 

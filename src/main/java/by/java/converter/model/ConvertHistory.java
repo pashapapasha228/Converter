@@ -1,5 +1,6 @@
 package by.java.converter.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "convertshistory")
+@Table(name = "history")
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConvertHistory {
@@ -25,7 +26,8 @@ public class ConvertHistory {
     @CreationTimestamp
     private LocalDateTime localDateTime;
 
-    @OneToMany
+    @OneToMany(mappedBy = "convertHistory")
+    @JsonBackReference
     private Set<Convert> converts;
 
 }

@@ -1,5 +1,6 @@
 package by.java.converter.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "converts")
+@Table(name = "convert")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Convert {
@@ -23,4 +24,8 @@ public class Convert {
     private Double amountIn;
     private Double amountOut;
 
+    @ManyToOne
+    @JoinColumn(name = "history_id")
+    @JsonManagedReference
+    private ConvertHistory convertHistory;
 }

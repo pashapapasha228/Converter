@@ -53,8 +53,7 @@ public class ConverterService {
                             convert.setAmountOut(moneyOut.getNumber().doubleValue());
 
                             convertSet.add(convert); // добавляем в множество
-
-                            convertRepository.save(convert); // сохраняем
+                            //convertRepository.save(convert); // сохраняем
                         }
                 );
 
@@ -63,6 +62,11 @@ public class ConverterService {
         convertHistory.setConverts(convertSet); // устанавливаем туда множество конвертаций
 
         convertHistoryRepository.save(convertHistory); // сохраняем
+        convertSet.forEach(convert -> {
+                    convert.setConvertHistory(convertHistory);
+                    convertRepository.save(convert);
+                }
+            );
 
         List<ConvertDTO> converts = convertSet.stream() // Преобразуем конвертации в ДТО
                 .map(convert -> new ConvertDTO(

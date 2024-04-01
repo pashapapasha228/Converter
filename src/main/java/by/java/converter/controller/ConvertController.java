@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/convert")
 public class ConvertController {
-
     private final ConvertService convertService;
 
     @Autowired
@@ -20,17 +19,17 @@ public class ConvertController {
         this.convertService = convertService;
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<ConvertDTO>> getAll() {
         return new ResponseEntity<>(convertService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<ConvertDTO> getById(@PathVariable Long id) {
         return new ResponseEntity<>(convertService.getById(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ConvertDTO> create(@RequestBody ConvertDTO convertDto) {
         convertService.create(convertDto);
 
