@@ -41,7 +41,7 @@ public class ConvertHistoryController {
         convertHistoryService.update(id, convertHistoryDTOIn);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {
         convertHistoryService.delete(id);
     }

@@ -26,7 +26,7 @@ public class ConvertHistory {
     @CreationTimestamp
     private LocalDateTime localDateTime;
 
-    @OneToMany(mappedBy = "convertHistory")
+    @OneToMany(mappedBy = "convertHistory", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference
     private Set<Convert> converts;
 
