@@ -1,5 +1,6 @@
 package by.java.converter.service;
 
+import by.java.converter.cache.ConvertHistoryCache;
 import by.java.converter.dto.ConvertDTO;
 import by.java.converter.dto.RequestDTO;
 import by.java.converter.dto.ResponseDTO;
@@ -19,10 +20,13 @@ public class ConverterService {
     private final ConvertRepository convertRepository; // service
     private final ConvertHistoryRepository convertHistoryRepository;  // service
 
+    private final ConvertHistoryCache convertHistoryCache;
+
     public ConverterService(ConvertRepository convertRepository,
-                            ConvertHistoryRepository convertHistoryRepository) {
+                            ConvertHistoryRepository convertHistoryRepository, ConvertHistoryCache convertHistoryCache) {
         this.convertRepository = convertRepository;
         this.convertHistoryRepository = convertHistoryRepository;
+        this.convertHistoryCache = convertHistoryCache;
     }
 
     public ResponseDTO convert(RequestDTO requestDto) {
@@ -66,7 +70,9 @@ public class ConverterService {
                     convert.setConvertHistory(convertHistory);
                     convertRepository.save(convert);
                 }
-            );
+        );
+
+        convertHistoryCache.put(convertHistory.getId(), convertHistory);
 
         List<ConvertDTO> converts = convertSet.stream() // Преобразуем конвертации в ДТО
                 .map(convert -> new ConvertDTO(

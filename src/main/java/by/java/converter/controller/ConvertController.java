@@ -29,6 +29,11 @@ public class ConvertController {
         return new ResponseEntity<>(convertService.getById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/getByCur")
+    public ResponseEntity<List<ConvertDTO>> getByCurrencies(@RequestParam String currencyIn, @RequestParam String currencyOut) {
+        return new ResponseEntity<>(convertService.getByCurrencies(currencyIn, currencyOut), HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<ConvertDTO> create(@RequestBody ConvertDTO convertDto) {
         convertService.create(convertDto);

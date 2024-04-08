@@ -1,10 +1,7 @@
 package by.java.converter.dto;
 
 import by.java.converter.model.Convert;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -13,6 +10,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class ConvertHistoryDTO {
     private Long id;
     private LocalDateTime localDateTime;

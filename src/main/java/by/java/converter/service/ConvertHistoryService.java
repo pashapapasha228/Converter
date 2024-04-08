@@ -1,5 +1,6 @@
 package by.java.converter.service;
 
+import by.java.converter.cache.ConvertHistoryCache;
 import by.java.converter.dto.ConvertHistoryDTO;
 
 import by.java.converter.model.ConvertHistory;
@@ -8,15 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ConvertHistoryService {
 
     private final ConvertHistoryRepository convertHistoryRepository;
+    private final ConvertHistoryCache convertHistoryCache;
 
     @Autowired
-    public ConvertHistoryService(ConvertHistoryRepository convertHistoryRepository) {
+    public ConvertHistoryService(ConvertHistoryRepository convertHistoryRepository, ConvertHistoryCache convertHistoryCache) {
+        this.convertHistoryCache = convertHistoryCache;
         this.convertHistoryRepository = convertHistoryRepository;
     }
 
@@ -34,7 +36,13 @@ public class ConvertHistoryService {
     }
 
     public ConvertHistoryDTO getById(Long id) {
-        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found by getting"));
+        ConvertHistory convertHistory = convertHistoryCache.get(id);
+
+        if (convertHistory == null) {
+            convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found by getting"));
+
+            convertHistoryCache.put(id, convertHistory);
+        }
 
         return new ConvertHistoryDTO(
                 convertHistory.getId(),
@@ -50,6 +58,8 @@ public class ConvertHistoryService {
         convertHistory.setConverts(convertHistoryDto.getConverts());
 
         convertHistoryRepository.save(convertHistory);
+
+        convertHistoryCache.put(convertHistory.getId(), convertHistory);
     }
 
     public void update(Long id, ConvertHistoryDTO convertHistoryDTOIn) {
@@ -59,6 +69,9 @@ public class ConvertHistoryService {
         convertHistory.setConverts(convertHistoryDTOIn.getConverts());
 
         convertHistoryRepository.save(convertHistory);
+
+        convertHistoryCache.remove(id);
+        convertHistoryCache.put(id, convertHistory);
     }
 
     public void delete(Long id) {
