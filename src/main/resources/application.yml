@@ -4,7 +4,6 @@ spring:
     username: admin
     password: QWERTY
     url: jdbc:postgresql://localhost:5432/postgres
-
   jpa:
     hibernate:
       ddl-auto: create # update - создает один раз, сбрасывает при изменении, create - каждый раз при запуске пересдает таблицы, сбрасывая содержимое

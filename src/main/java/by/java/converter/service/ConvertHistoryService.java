@@ -78,5 +78,6 @@ public class ConvertHistoryService {
         ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found by deleting"));
 
         convertHistoryRepository.delete(convertHistory);
+        convertHistoryCache.remove(id);
     }
 }

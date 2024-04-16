@@ -1,0 +1,43 @@
+22:18:41.606 [main] INFO  b.j.converter.ConverterApplication - Starting ConverterApplication using Java 21.0.2 with PID 9896 (D:\java\converter\target\classes started by Lenovo in D:\java\converter)
+22:18:41.608 [main] INFO  b.j.converter.ConverterApplication - No active profile set, falling back to 1 default profile: "default"
+22:18:41.996 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22:18:42.033 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 2 JPA repository interfaces.
+22:18:42.500 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+22:18:42.508 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:18:42.509 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:18:42.509 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+22:18:42.551 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:18:42.551 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 916 ms
+22:18:42.692 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22:18:42.735 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+22:18:42.765 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+22:18:42.933 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+22:18:42.953 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:18:43.155 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@10745a02
+22:18:43.156 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:18:43.184 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+22:18:43.845 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+22:18:43.903 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22:18:44.210 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+22:18:44.387 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22:18:44.842 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:18:44.854 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+22:18:44.859 [main] INFO  b.j.converter.ConverterApplication - Started ConverterApplication in 3.508 seconds (process running for 4.012)
+22:18:53.779 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:18:53.779 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:18:53.780 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+22:18:53.850 [http-nio-8080-exec-2] INFO  b.j.converter.aspects.LoggingAspects - Started method convert with arguments by.java.converter.dto.RequestDTO@ccf0cf0
+22:18:53.856 [http-nio-8080-exec-2] INFO  o.j.m.DefaultMonetaryContextFactory - Using custom MathContext: precision=256, roundingMode=HALF_EVEN
+22:18:53.864 [http-nio-8080-exec-2] INFO  b.j.converter.aspects.LoggingAspects - Method convert threw an exception NullPointerException with message Cannot invoke "java.util.List.forEach(java.util.function.Consumer)" because the return value of "by.java.converter.dto.RequestDTO.getCurrenciesOut()" is null
+22:19:06.315 [http-nio-8080-exec-4] INFO  b.j.converter.aspects.LoggingAspects - Started method convert with arguments by.java.converter.dto.RequestDTO@48f44cf0
+22:19:06.315 [http-nio-8080-exec-4] INFO  b.j.converter.aspects.LoggingAspects - Method convert threw an exception NullPointerException with message Cannot invoke "java.util.List.forEach(java.util.function.Consumer)" because the return value of "by.java.converter.dto.RequestDTO.getCurrenciesOut()" is null
+22:19:14.676 [http-nio-8080-exec-6] INFO  b.j.converter.aspects.LoggingAspects - Started method convert with arguments by.java.converter.dto.RequestDTO@c85fa61b
+22:19:14.708 [http-nio-8080-exec-6] WARN  o.j.m.s.l.okhttp.OkHttpResourceCache - Failed to delete caching file: D:\java\converter\.resourceCache\IMFRateProvider.dat
+22:19:19.898 [http-nio-8080-exec-6] INFO  b.j.converter.aspects.LoggingAspects - Method convert executed.
+22:19:28.679 [http-nio-8080-exec-7] INFO  b.j.converter.aspects.LoggingAspects - Started method convert with arguments by.java.converter.dto.RequestDTO@c3dac1ac
+22:19:28.680 [http-nio-8080-exec-7] INFO  b.j.converter.aspects.LoggingAspects - Method convert threw an exception UnknownCurrencyException with message Unknown currency code: RB
+22:19:47.612 [http-nio-8080-exec-9] INFO  b.j.converter.aspects.LoggingAspects - Started method convert with arguments by.java.converter.dto.RequestDTO@e79c661b
+22:19:47.620 [http-nio-8080-exec-9] INFO  b.j.converter.aspects.LoggingAspects - Method convert executed.
+22:29:17.752 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+22:29:17.753 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+22:29:17.759 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

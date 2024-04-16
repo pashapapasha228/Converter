@@ -8,8 +8,14 @@ import java.util.Map;
 
 @Component
 public class ConvertHistoryCache {
+    private static final int MAZ_SIZE = 16;
 
-    private static final Map<Long, ConvertHistory> cache = new LinkedHashMap<>(17, 0.75f, true);
+    private static final Map<Long, ConvertHistory> cache = new LinkedHashMap<>() {
+        @Override
+        protected boolean removeEldestEntry(final Map.Entry eldest) {
+            return size() > ConvertHistoryCache.MAZ_SIZE;
+        }
+    };
 
     public void put(Long id, ConvertHistory value) {
         cache.put(id, value);
