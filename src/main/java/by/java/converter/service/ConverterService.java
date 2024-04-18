@@ -8,6 +8,7 @@ import by.java.converter.model.Convert;
 import by.java.converter.model.ConvertHistory;
 import by.java.converter.repository.ConvertHistoryRepository;
 import by.java.converter.repository.ConvertRepository;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.money.convert.MonetaryConversions;
