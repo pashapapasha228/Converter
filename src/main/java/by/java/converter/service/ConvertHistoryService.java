@@ -1,83 +1,106 @@
 package by.java.converter.service;
 
 import by.java.converter.cache.ConvertHistoryCache;
-import by.java.converter.dto.ConvertHistoryDTO;
-
+import by.java.converter.dto.ConvertHistoryDto;
 import by.java.converter.model.ConvertHistory;
 import by.java.converter.repository.ConvertHistoryRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+/**
+ * Ковертер для ConvertHistoryService.
+ */
 @Service
 public class ConvertHistoryService {
 
-    private final ConvertHistoryRepository convertHistoryRepository;
-    private final ConvertHistoryCache convertHistoryCache;
+  private final ConvertHistoryRepository convertHistoryRepository;
+  private final ConvertHistoryCache convertHistoryCache;
 
-    @Autowired
-    public ConvertHistoryService(ConvertHistoryRepository convertHistoryRepository, ConvertHistoryCache convertHistoryCache) {
-        this.convertHistoryCache = convertHistoryCache;
-        this.convertHistoryRepository = convertHistoryRepository;
+  @Autowired
+  public ConvertHistoryService(ConvertHistoryRepository convertHistoryRepository,
+                               ConvertHistoryCache convertHistoryCache) {
+    this.convertHistoryCache = convertHistoryCache;
+    this.convertHistoryRepository = convertHistoryRepository;
+  }
+
+  /**
+   * Получение всех ConvertHistory из базы данных.
+   */
+  public List<ConvertHistoryDto> getAll() {
+    List<ConvertHistory> list = convertHistoryRepository.findAll();
+
+    return list
+      .stream()
+      .map(convertHistory -> new ConvertHistoryDto(
+        convertHistory.getId(),
+        convertHistory.getLocalDateTime(),
+        convertHistory.getConverts()
+      )
+    ).toList();
+  }
+
+  /**
+   * Получение ConvertHistory из базы данных по id.
+   */
+  public ConvertHistoryDto getById(Long id) {
+    ConvertHistory convertHistory = convertHistoryCache.get(id);
+
+    if (convertHistory == null) {
+      convertHistory = convertHistoryRepository.findById(id).orElseThrow(
+        () -> new RuntimeException("ConvertHistory not found by getting")
+      );
+
+      convertHistoryCache.put(id, convertHistory);
     }
 
-    public List<ConvertHistoryDTO> getAll() {
-        List<ConvertHistory> list = convertHistoryRepository.findAll();
+    return new ConvertHistoryDto(
+      convertHistory.getId(),
+      convertHistory.getLocalDateTime(),
+      convertHistory.getConverts()
+    );
+  }
 
-        return list
-                .stream()
-                .map(convertHistory -> new ConvertHistoryDTO(
-                                convertHistory.getId(),
-                                convertHistory.getLocalDateTime(),
-                                convertHistory.getConverts()
-                        )
-                ).toList();
-    }
+  /**
+   * Создание ConvertHistory в базе данных.
+   */
+  public void create(ConvertHistoryDto convertHistoryDto) {
+    ConvertHistory convertHistory = new ConvertHistory();
 
-    public ConvertHistoryDTO getById(Long id) {
-        ConvertHistory convertHistory = convertHistoryCache.get(id);
+    convertHistory.setLocalDateTime(convertHistoryDto.getLocalDateTime());
+    convertHistory.setConverts(convertHistoryDto.getConverts());
 
-        if (convertHistory == null) {
-            convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found by getting"));
+    convertHistoryRepository.save(convertHistory);
 
-            convertHistoryCache.put(id, convertHistory);
-        }
+    convertHistoryCache.put(convertHistory.getId(), convertHistory);
+  }
 
-        return new ConvertHistoryDTO(
-                convertHistory.getId(),
-                convertHistory.getLocalDateTime(),
-                convertHistory.getConverts()
-        );
-    }
+  /**
+   * Обновление ConvertHistory в базе данных по id.
+   */
+  public void update(Long id, ConvertHistoryDto convertHistoryDtoIn) {
+    ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(
+        () -> new RuntimeException("ConvertHistory not found by updating")
+    );
 
-    public void create(ConvertHistoryDTO convertHistoryDto) {
-        ConvertHistory convertHistory = new ConvertHistory();
+    convertHistory.setLocalDateTime(convertHistoryDtoIn.getLocalDateTime());
+    convertHistory.setConverts(convertHistoryDtoIn.getConverts());
 
-        convertHistory.setLocalDateTime(convertHistoryDto.getLocalDateTime());
-        convertHistory.setConverts(convertHistoryDto.getConverts());
+    convertHistoryRepository.save(convertHistory);
 
-        convertHistoryRepository.save(convertHistory);
+    convertHistoryCache.remove(id);
+    convertHistoryCache.put(id, convertHistory);
+  }
 
-        convertHistoryCache.put(convertHistory.getId(), convertHistory);
-    }
+  /**
+   * Удаление ConvertHistory из базы данных по id.
+   */
+  public void delete(Long id) {
+    ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(
+        () -> new RuntimeException("ConvertHistory not found by deleting")
+    );
 
-    public void update(Long id, ConvertHistoryDTO convertHistoryDTOIn) {
-        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found by updating"));
-
-        convertHistory.setLocalDateTime(convertHistoryDTOIn.getLocalDateTime());
-        convertHistory.setConverts(convertHistoryDTOIn.getConverts());
-
-        convertHistoryRepository.save(convertHistory);
-
-        convertHistoryCache.remove(id);
-        convertHistoryCache.put(id, convertHistory);
-    }
-
-    public void delete(Long id) {
-        ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(() -> new RuntimeException("ConvertHistory not found by deleting"));
-
-        convertHistoryRepository.delete(convertHistory);
-        convertHistoryCache.remove(id);
-    }
+    convertHistoryRepository.delete(convertHistory);
+    convertHistoryCache.remove(id);
+  }
 }

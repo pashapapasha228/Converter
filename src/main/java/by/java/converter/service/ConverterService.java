@@ -1,103 +1,118 @@
 package by.java.converter.service;
 
 import by.java.converter.cache.ConvertHistoryCache;
-import by.java.converter.dto.ConvertDTO;
-import by.java.converter.dto.RequestDTO;
-import by.java.converter.dto.ResponseDTO;
+import by.java.converter.dto.ConvertDto;
+import by.java.converter.dto.RequestDto;
+import by.java.converter.dto.ResponseDto;
 import by.java.converter.model.Convert;
 import by.java.converter.model.ConvertHistory;
 import by.java.converter.repository.ConvertHistoryRepository;
 import by.java.converter.repository.ConvertRepository;
+import java.util.List;
+import java.util.Set;
+import javax.money.convert.MonetaryConversions;
 import org.javamoney.moneta.Money;
 import org.springframework.stereotype.Service;
 
-import javax.money.convert.MonetaryConversions;
-import java.util.*;
-
+/**
+ * Основной сервис приложения.
+ */
 @Service
 public class ConverterService {
 
-    private final ConvertRepository convertRepository; // service
-    private final ConvertHistoryRepository convertHistoryRepository;  // service
+  private final ConvertRepository convertRepository; // service
+  private final ConvertHistoryRepository convertHistoryRepository;  // service
 
-    private final ConvertHistoryCache convertHistoryCache;
+  private final ConvertHistoryCache convertHistoryCache;
 
-    public ConverterService(ConvertRepository convertRepository,
-                            ConvertHistoryRepository convertHistoryRepository, ConvertHistoryCache convertHistoryCache) {
-        this.convertRepository = convertRepository;
-        this.convertHistoryRepository = convertHistoryRepository;
-        this.convertHistoryCache = convertHistoryCache;
-    }
+  /**
+   * Конструктор для внедрения зависимостей.
+   */
+  public ConverterService(ConvertRepository convertRepository,
+                          ConvertHistoryRepository convertHistoryRepository,
+                          ConvertHistoryCache convertHistoryCache) {
+    this.convertRepository = convertRepository;
+    this.convertHistoryRepository = convertHistoryRepository;
+    this.convertHistoryCache = convertHistoryCache;
+  }
 
-    public ResponseDTO convert(RequestDTO requestDto) {
+  /**
+   * Метод конвертации входных валют.
+   */
+  public ResponseDto convert(RequestDto requestDto) {
 
-        // Создаем множество конвертаций
-        Set<Convert> convertSet = new HashSet<>();
+    // Создаем множество конвертаций
+    Set<Convert> convertSet = new HashSet<>();
 
-        // Создаем входную валюту
-        Money moneyIn = Money.of(requestDto.getAmountIn(), requestDto.getCurrencyIn());
+    // Создаем входную валюту
+    Money moneyIn = Money.of(requestDto.getAmountIn(), requestDto.getCurrencyIn());
 
-        requestDto
-                .getCurrenciesOut()
-                .forEach( // Для каждого кода выходной валюты
-                        c -> {
-                            Money moneyOut = moneyIn // создаем выходную валюту
-                                    .with(
-                                            MonetaryConversions // Конвертируем
-                                                    .getExchangeRateProvider()
-                                                    .getCurrencyConversion(c)
-                                    );
-
-                            // Создаем конвертацию
-                            Convert convert = new Convert();
-
-                            convert.setCurrencyOut(moneyOut.getCurrency().getCurrencyCode());
-                            convert.setCurrencyIn(moneyIn.getCurrency().getCurrencyCode());
-                            convert.setAmountIn(moneyIn.getNumber().doubleValue());
-                            convert.setAmountOut(moneyOut.getNumber().doubleValue());
-
-                            convertSet.add(convert); // добавляем в множество
-                            //convertRepository.save(convert); // сохраняем
-                        }
+    requestDto
+        .getCurrenciesOut()
+        .forEach(
+          // Для каждого кода выходной валюты
+          c -> {
+            Money moneyOut = moneyIn // создаем выходную валюту
+                .with(
+                  MonetaryConversions // Конвертируем
+                    .getExchangeRateProvider()
+                    .getCurrencyConversion(c)
                 );
 
-        ConvertHistory convertHistory = new ConvertHistory(); // создаем информацию о запросе
+            // Создаем конвертацию
+            Convert convert = new Convert();
 
-        convertHistory.setConverts(convertSet); // устанавливаем туда множество конвертаций
+            convert.setCurrencyOut(moneyOut.getCurrency().getCurrencyCode());
+            convert.setCurrencyIn(moneyIn.getCurrency().getCurrencyCode());
+            convert.setAmountIn(moneyIn.getNumber().doubleValue());
+            convert.setAmountOut(moneyOut.getNumber().doubleValue());
 
-        convertHistoryRepository.save(convertHistory); // сохраняем
-        convertSet.forEach(convert -> {
-                    convert.setConvertHistory(convertHistory);
-                    convertRepository.save(convert);
-                }
+            convertSet.add(convert); // добавляем в множество
+          }
         );
 
-        convertHistoryCache.put(convertHistory.getId(), convertHistory);
+    ConvertHistory convertHistory = new ConvertHistory(); // создаем информацию о запросе
 
-        List<ConvertDTO> converts = convertSet.stream() // Преобразуем конвертации в ДТО
-                .map(convert -> new ConvertDTO(
-                                convert.getId(),
-                                convert.getCurrencyIn(),
-                                convert.getCurrencyOut(),
-                                convert.getAmountIn(),
-                                convert.getAmountOut()
-                        )
-                ).toList();
+    convertHistory.setConverts(convertSet); // устанавливаем туда множество конвертаций
 
-        return new ResponseDTO(converts);
-    }
+    convertHistoryRepository.save(convertHistory); // сохраняем
+    convertSet.forEach(
+        convert -> {
+          convert.setConvertHistory(convertHistory);
+          convertRepository.save(convert);
+        }
+    );
 
-    public ResponseDTO getAll() {
-        List<ConvertDTO> converts = convertRepository.findAll().stream() // Преобразуем конвертации в ДТО
-                .map(convert -> new ConvertDTO(
-                                convert.getId(),
-                                convert.getCurrencyIn(),
-                                convert.getCurrencyOut(),
-                                convert.getAmountIn(),
-                                convert.getAmountOut()
-                        )
-                ).toList();
+    convertHistoryCache.put(convertHistory.getId(), convertHistory);
 
-        return new ResponseDTO(converts);
-    }
+    List<ConvertDto> converts = convertSet.stream() // Преобразуем конвертации в ДТО
+        .map(convert -> new ConvertDto(
+          convert.getId(),
+          convert.getCurrencyIn(),
+          convert.getCurrencyOut(),
+          convert.getAmountIn(),
+          convert.getAmountOut()
+        )
+    ).toList();
+
+    return new ResponseDto(converts);
+  }
+
+  /**
+   * Получение всех преобразований валют в базе данных.
+   */
+  public ResponseDto getAll() {
+    // Преобразуем конвертации в ДТО
+    List<ConvertDto> converts = convertRepository.findAll().stream()
+        .map(convert -> new ConvertDto(
+          convert.getId(),
+          convert.getCurrencyIn(),
+          convert.getCurrencyOut(),
+          convert.getAmountIn(),
+          convert.getAmountOut()
+        )
+      ).toList();
+
+    return new ResponseDto(converts);
+  }
 }

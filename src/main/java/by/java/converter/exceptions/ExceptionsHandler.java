@@ -7,26 +7,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Обработчик 400, 404, 500 ошибок.
+ */
 @RestControllerAdvice
 public class ExceptionsHandler {
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Object> badRequestException(Exception ex) {
+  /**
+   * Обработка 400 ошибки.
+   */
+  @ExceptionHandler(IllegalArgumentException.class)
+  public ResponseEntity<Object> badRequestException(Exception ex) {
 
-        return new ResponseEntity<>(new ErrorResponse(LocalDateTime.now(), 400, ex.getMessage()),
-                HttpStatus.BAD_REQUEST);
-    }
+    return new ResponseEntity<>(new ErrorResponse(LocalDateTime.now(),
+        400, ex.getMessage()),
+        HttpStatus.BAD_REQUEST);
+  }
 
-    @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<Object> notFoundException(Exception ex) {
+  /**
+   * Обработка 404 ошибки.
+  */
+  @ExceptionHandler(NoSuchElementException.class)
+  public ResponseEntity<Object> notFoundException(Exception ex) {
 
-        return new ResponseEntity<>(new ErrorResponse(LocalDateTime.now(), 404, ex.getMessage()),
+    return new ResponseEntity<>(new ErrorResponse(LocalDateTime.now(), 404, ex.getMessage()),
                 HttpStatus.NOT_FOUND);
-    }
+  }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> internalServerErrorException(Exception ex) {
+  /**
+   * Обработка 500 ошибки.
+   */
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<Object> internalServerErrorException(Exception ex) {
 
-        return new ResponseEntity<>(new ErrorResponse(LocalDateTime.now(), 500, ex.getMessage()),
+    return new ResponseEntity<>(new ErrorResponse(LocalDateTime.now(), 500, ex.getMessage()),
                 HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+  }
 }

@@ -1,33 +1,70 @@
 package by.java.converter.service;
 
-import by.java.converter.dto.ConvertDTO;
+import by.java.converter.dto.ConvertDto;
 import by.java.converter.model.Convert;
 import by.java.converter.repository.ConvertRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+/**
+ * Сервис для сущности Convert.
+ */
 @Service
 public class ConvertService {
 
-    private final ConvertRepository convertRepository;
+  private final ConvertRepository convertRepository;
 
-    @Autowired
-    public ConvertService(ConvertRepository convertRepository) {
-        this.convertRepository = convertRepository;
-    }
+  @Autowired
+  public ConvertService(ConvertRepository convertRepository) {
+    this.convertRepository = convertRepository;
+  }
 
-    public List<ConvertDTO> getAll() {
-        List<Convert> list = convertRepository.findAll();
+  /**
+   * Получение всех Convert из базы данных.
+   */
+  public List<ConvertDto> getAll() {
+    List<Convert> list = convertRepository.findAll();
 
-        return list
+    return list
+      .stream()
+      .map(convert -> new ConvertDto(
+        convert.getId(),
+        convert.getCurrencyIn(),
+        convert.getCurrencyOut(),
+        convert.getAmountIn(),
+        convert.getAmountOut()
+        )
+      ).toList();
+  }
+
+  /**
+   * Получение Convert по id из базы данных.
+   */
+  public ConvertDto getById(Long id) {
+    Convert convert = convertRepository.findById(id).orElseThrow(
+        () -> new RuntimeException("Convert not found by getting")
+    );
+
+    return new ConvertDto(
+      convert.getId(),
+      convert.getCurrencyIn(),
+      convert.getCurrencyOut(),
+      convert.getAmountIn(),
+      convert.getAmountOut()
+    );
+  }
+
+  /**
+   * Получение всех Converts c полями равными
+   * currencyIn и currencyOut из базы данных.
+   */
+  public List<ConvertDto> getByCurrencies(String currencyIn, String currencyOut) {
+    List<Convert> list = convertRepository.getConvertsByCurrencies(currencyIn, currencyOut);
+
+    return list
                 .stream()
-                .map(convert -> new ConvertDTO(
+                .map(convert -> new ConvertDto(
                                 convert.getId(),
                                 convert.getCurrencyIn(),
                                 convert.getCurrencyOut(),
@@ -35,60 +72,46 @@ public class ConvertService {
                                 convert.getAmountOut()
                         )
                 ).toList();
-    }
+  }
 
-    public ConvertDTO getById(Long id) {
-        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found by getting"));
+  /**
+   * Создание Convert в базу данных.
+   */
+  public void create(ConvertDto convertDto) {
+    Convert convert = new Convert();
 
-        return new ConvertDTO(
-                convert.getId(),
-                convert.getCurrencyIn(),
-                convert.getCurrencyOut(),
-                convert.getAmountIn(),
-                convert.getAmountOut()
-        );
-    }
+    convert.setAmountIn(convertDto.getAmountIn());
+    convert.setAmountOut(convertDto.getAmountOut());
+    convert.setCurrencyIn(convertDto.getCurrencyIn());
+    convert.setCurrencyOut(convertDto.getCurrencyOut());
 
-    public List<ConvertDTO> getByCurrencies(String currencyIn, String currencyOut) {
-        List<Convert> list = convertRepository.getConvertsByCurrencies(currencyIn, currencyOut);
+    convertRepository.save(convert);
+  }
 
-        return list
-                .stream()
-                .map(convert -> new ConvertDTO(
-                                convert.getId(),
-                                convert.getCurrencyIn(),
-                                convert.getCurrencyOut(),
-                                convert.getAmountIn(),
-                                convert.getAmountOut()
-                        )
-                ).toList();
-    }
+  /**
+   * Удаление Convert с id из базы данных.
+   */
+  public void delete(Long id) {
+    Convert convert = convertRepository.findById(id).orElseThrow(
+        () -> new RuntimeException("Convert not found by deleting")
+    );
 
-    public void create(ConvertDTO convertDto) {
-        Convert convert = new Convert();
+    convertRepository.delete(convert);
+  }
 
-        convert.setAmountIn(convertDto.getAmountIn());
-        convert.setAmountOut(convertDto.getAmountOut());
-        convert.setCurrencyIn(convertDto.getCurrencyIn());
-        convert.setCurrencyOut(convertDto.getCurrencyOut());
+  /**
+   * Обновление Convert с id в базу данных.
+   */
+  public void update(Long id, ConvertDto convertDto) {
+    Convert convert = convertRepository.findById(id).orElseThrow(
+        () -> new RuntimeException("Convert not found by updating")
+    );
 
-        convertRepository.save(convert);
-    }
+    convert.setAmountIn(convertDto.getAmountIn());
+    convert.setAmountOut(convertDto.getAmountOut());
+    convert.setCurrencyIn(convertDto.getCurrencyIn());
+    convert.setCurrencyOut(convertDto.getCurrencyOut());
 
-    public void delete(Long id) {
-        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found by deleting"));
-
-        convertRepository.delete(convert);
-    }
-
-    public void update(Long id, ConvertDTO convertDTO) {
-        Convert convert = convertRepository.findById(id).orElseThrow(() -> new RuntimeException("Convert not found by updating"));
-
-        convert.setAmountIn(convertDTO.getAmountIn());
-        convert.setAmountOut(convertDTO.getAmountOut());
-        convert.setCurrencyIn(convertDTO.getCurrencyIn());
-        convert.setCurrencyOut(convertDTO.getCurrencyOut());
-
-        convertRepository.save(convert);
-    }
+    convertRepository.save(convert);
+  }
 }
