@@ -18,8 +18,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Aspect
 public class LoggingAspects {
-  @Pointcut("execution(* by.java.converter.service.*.*(..))")
+  @Pointcut("execution(* by.java.converter.service.*.*(..)) ")
   public void allMethods() {
+
+  }
+
+  @Pointcut("execution(* by.java.converter.exceptions.*.*(..))")
+  public void allExceptionMethods() {
 
   }
 
@@ -46,7 +51,24 @@ public class LoggingAspects {
 
   @AfterThrowing(pointcut = "allMethods()", throwing = "exception")
   public void logAfterThrowing(JoinPoint joinPoint, Throwable exception) {
-    log.info("Method " + joinPoint.getSignature().getName() + " threw an exception "
+    log.error("Method " + joinPoint.getSignature().getName() + " threw an exception "
                 + exception.getClass().getSimpleName() + " with message " + exception.getMessage());
+  }
+
+  /**
+   * Обработка перед исключениями.
+   */
+  @Before("allExceptionMethods()")
+  public void logBeforeException(JoinPoint joinPoint) {
+
+    if (joinPoint.getArgs().length != 0) {
+      log.error("Exception was found: " + joinPoint.getSignature().getName() + " with arguments "
+          + Arrays.stream(joinPoint.getArgs())
+          .map(Object::toString)
+          .collect(Collectors.joining(", ")));
+    } else {
+      log.error("Exception was found: "
+          + joinPoint.getSignature().getName() + " with no arguments");
+    }
   }
 }

@@ -5,6 +5,7 @@ import by.java.converter.dto.ConvertHistoryDto;
 import by.java.converter.model.ConvertHistory;
 import by.java.converter.repository.ConvertHistoryRepository;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,7 @@ public class ConvertHistoryService {
 
     if (convertHistory == null) {
       convertHistory = convertHistoryRepository.findById(id).orElseThrow(
-        () -> new RuntimeException("ConvertHistory not found by getting")
+        () -> new NoSuchElementException("ConvertHistory not found by getting")
       );
 
       convertHistoryCache.put(id, convertHistory);
@@ -80,7 +81,7 @@ public class ConvertHistoryService {
    */
   public void update(Long id, ConvertHistoryDto convertHistoryDtoIn) {
     ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(
-        () -> new RuntimeException("ConvertHistory not found by updating")
+        () -> new NoSuchElementException("ConvertHistory not found by updating")
     );
 
     convertHistory.setLocalDateTime(convertHistoryDtoIn.getLocalDateTime());
@@ -88,7 +89,7 @@ public class ConvertHistoryService {
 
     convertHistoryRepository.save(convertHistory);
 
-    convertHistoryCache.remove(id);
+    //convertHistoryCache.remove(id);
     convertHistoryCache.put(id, convertHistory);
   }
 
@@ -97,7 +98,7 @@ public class ConvertHistoryService {
    */
   public void delete(Long id) {
     ConvertHistory convertHistory = convertHistoryRepository.findById(id).orElseThrow(
-        () -> new RuntimeException("ConvertHistory not found by deleting")
+        () -> new NoSuchElementException("ConvertHistory not found by deleting")
     );
 
     convertHistoryRepository.delete(convertHistory);

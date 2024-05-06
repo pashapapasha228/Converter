@@ -6,7 +6,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
   jpa:
     hibernate:
-      ddl-auto: create # update - создает один раз, сбрасывает при изменении, create - каждый раз при запуске пересдает таблицы, сбрасывая содержимое
+      ddl-auto: update # update - создает один раз, сбрасывает при изменении, create - каждый раз при запуске пересдает таблицы, сбрасывая содержимое
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true

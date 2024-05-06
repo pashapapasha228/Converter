@@ -4,6 +4,7 @@ import by.java.converter.dto.ConvertDto;
 import by.java.converter.model.Convert;
 import by.java.converter.repository.ConvertRepository;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,7 @@ public class ConvertService {
    */
   public ConvertDto getById(Long id) {
     Convert convert = convertRepository.findById(id).orElseThrow(
-        () -> new RuntimeException("Convert not found by getting")
+        () -> new NoSuchElementException("Convert not found by getting")
     );
 
     return new ConvertDto(
@@ -93,7 +94,7 @@ public class ConvertService {
    */
   public void delete(Long id) {
     Convert convert = convertRepository.findById(id).orElseThrow(
-        () -> new RuntimeException("Convert not found by deleting")
+        () -> new NoSuchElementException("Convert not found by deleting")
     );
 
     convertRepository.delete(convert);
@@ -104,7 +105,7 @@ public class ConvertService {
    */
   public void update(Long id, ConvertDto convertDto) {
     Convert convert = convertRepository.findById(id).orElseThrow(
-        () -> new RuntimeException("Convert not found by updating")
+        () -> new NoSuchElementException("Convert not found by updating")
     );
 
     convert.setAmountIn(convertDto.getAmountIn());

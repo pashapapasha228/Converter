@@ -1,32 +1,144 @@
-16:37:50.455 INFO  b.j.converter.ConverterApplication - Starting ConverterApplication using Java 21.0.2 with PID 1636 (D:\java\converter\target\classes started by Lenovo in D:\java\converter)
-16:37:50.458 INFO  b.j.converter.ConverterApplication - No active profile set, falling back to 1 default profile: "default"
-16:37:51.643 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-16:37:51.723 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 69 ms. Found 2 JPA repository interfaces.
-16:37:52.833 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-16:37:52.851 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-16:37:52.852 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
-16:37:52.963 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-16:37:52.963 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2446 ms
-16:37:53.306 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-16:37:53.407 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
-16:37:53.467 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-16:37:53.814 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-16:37:53.853 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-16:37:54.025 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3620eab
-16:37:54.029 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-16:37:54.088 WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-16:37:55.546 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-16:37:55.636 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-16:37:56.340 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-16:37:56.902 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-16:37:58.893 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
-16:37:58.908 INFO  b.j.converter.ConverterApplication - Started ConverterApplication in 9.063 seconds (process running for 10.405)
-16:38:19.469 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-16:38:19.469 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-16:38:19.471 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-16:38:19.634 INFO  b.j.converter.aspects.LoggingAspects - Started method convert with arguments by.java.converter.dto.RequestDto@678c989b
-16:38:19.648 INFO  o.j.m.DefaultMonetaryContextFactory - Using custom MathContext: precision=256, roundingMode=HALF_EVEN
-16:38:26.688 INFO  b.j.converter.aspects.LoggingAspects - Method convert executed.
-16:40:39.036 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-16:40:39.039 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-16:40:39.052 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+13:02:59.667 INFO  b.j.converter.ConverterApplication - Starting ConverterApplication using Java 21.0.2 with PID 2416 (D:\java\converter\target\classes started by Lenovo in D:\java\converter)
+13:02:59.670 INFO  b.j.converter.ConverterApplication - No active profile set, falling back to 1 default profile: "default"
+13:03:00.830 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+13:03:00.909 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 2 JPA repository interfaces.
+13:03:02.196 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+13:03:02.220 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+13:03:02.221 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+13:03:02.356 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+13:03:02.357 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2629 ms
+13:03:02.784 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+13:03:02.872 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+13:03:02.923 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+13:03:03.294 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+13:03:03.333 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+13:03:03.497 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3de45b6c
+13:03:03.500 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+13:03:03.556 WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+13:03:05.090 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+13:03:05.200 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+13:03:06.211 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+13:03:06.881 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+13:03:09.023 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+13:03:09.038 INFO  b.j.converter.ConverterApplication - Started ConverterApplication in 9.927 seconds (process running for 11.107)
+13:03:14.816 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+13:03:14.816 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+13:03:14.818 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+13:03:14.862 ERROR b.j.converter.aspects.LoggingAspects - Exception was found: internalServerErrorException with arguments org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/v1/converter/conver.
+13:03:31.414 ERROR b.j.converter.aspects.LoggingAspects - Exception was found: badRequestException with arguments org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Array entries
+13:03:48.164 INFO  b.j.converter.aspects.LoggingAspects - Started method getById with arguments 4
+13:03:48.265 ERROR b.j.converter.aspects.LoggingAspects - Method getById threw an exception NoSuchElementException with message ConvertHistory not found by getting
+13:03:48.266 ERROR b.j.converter.aspects.LoggingAspects - Exception was found: notFoundException with arguments java.util.NoSuchElementException: ConvertHistory not found by getting
+13:17:10.405 ERROR b.j.converter.aspects.LoggingAspects - Exception was found: internalServerErrorException with arguments org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'DELETE' is not supported
+13:18:07.675 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+13:18:07.678 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+13:18:07.696 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+22:10:45.146 INFO  b.j.converter.ConverterApplication - Starting ConverterApplication using Java 21.0.2 with PID 3028 (D:\java\converter\target\classes started by Lenovo in D:\java\converter)
+22:10:45.148 INFO  b.j.converter.ConverterApplication - No active profile set, falling back to 1 default profile: "default"
+22:10:45.732 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22:10:45.769 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 2 JPA repository interfaces.
+22:10:46.333 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+22:10:46.343 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:10:46.343 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+22:10:46.394 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:10:46.394 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1219 ms
+22:10:46.553 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22:10:46.611 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+22:10:46.640 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+22:10:46.826 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+22:10:46.849 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:10:46.979 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2e0516a3
+22:10:46.980 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:10:47.036 WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+22:10:47.790 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+22:10:48.032 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22:10:48.374 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+22:10:48.664 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22:10:49.643 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+22:10:49.649 INFO  b.j.converter.ConverterApplication - Started ConverterApplication in 4.782 seconds (process running for 5.427)
+22:11:26.120 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:11:26.120 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:11:26.121 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+22:11:26.201 INFO  b.j.converter.aspects.LoggingAspects - Started method convert with arguments by.java.converter.dto.RequestDto@ff133aca
+22:11:26.208 INFO  o.j.m.DefaultMonetaryContextFactory - Using custom MathContext: precision=256, roundingMode=HALF_EVEN
+22:11:31.934 INFO  b.j.converter.aspects.LoggingAspects - Method convert executed.
+22:11:42.777 INFO  b.j.converter.aspects.LoggingAspects - Started method getAll with no arguments
+22:11:42.882 INFO  b.j.converter.aspects.LoggingAspects - Method getAll executed.
+22:12:56.091 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+22:12:56.093 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+22:12:56.099 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+22:24:29.333 INFO  b.j.converter.ConverterApplication - Starting ConverterApplication using Java 21.0.2 with PID 10440 (D:\java\converter\target\classes started by Lenovo in D:\java\converter)
+22:24:29.335 INFO  b.j.converter.ConverterApplication - No active profile set, falling back to 1 default profile: "default"
+22:24:30.393 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22:24:30.452 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+22:24:31.293 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+22:24:31.311 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:24:31.312 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+22:24:31.396 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:24:31.397 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2012 ms
+22:24:31.689 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22:24:31.770 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+22:24:31.815 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+22:24:32.123 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+22:24:32.157 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:24:32.302 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@453a30f8
+22:24:32.304 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:24:32.358 WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+22:24:33.498 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+22:24:33.733 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22:24:34.176 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+22:24:34.565 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22:24:36.061 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+22:24:36.068 INFO  b.j.converter.ConverterApplication - Started ConverterApplication in 7.241 seconds (process running for 8.322)
+22:25:31.310 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+22:25:31.312 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+22:25:31.315 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+22:36:54.556 INFO  b.j.converter.ConverterApplication - Starting ConverterApplication using Java 21.0.2 with PID 12072 (D:\java\converter\target\classes started by Lenovo in D:\java\converter)
+22:36:54.557 INFO  b.j.converter.ConverterApplication - No active profile set, falling back to 1 default profile: "default"
+22:36:55.226 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22:36:55.267 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 2 JPA repository interfaces.
+22:36:55.785 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+22:36:55.846 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1263 ms
+22:36:55.997 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22:36:56.039 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+22:36:56.064 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+22:36:56.239 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+22:36:56.259 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:36:56.343 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3620eab
+22:36:56.344 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:36:56.372 WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+22:36:57.055 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+22:36:57.256 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22:36:57.612 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+22:36:57.911 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22:36:58.911 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+22:36:58.917 INFO  b.j.converter.ConverterApplication - Started ConverterApplication in 4.651 seconds (process running for 5.254)
+22:36:58.924 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+22:36:58.925 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+22:36:58.929 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+22:37:04.867 INFO  b.j.converter.ConverterApplication - Starting ConverterApplication using Java 21.0.2 with PID 17188 (D:\java\converter\target\classes started by Lenovo in D:\java\converter)
+22:37:04.872 INFO  b.j.converter.ConverterApplication - No active profile set, falling back to 1 default profile: "default"
+22:37:05.886 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22:37:05.946 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+22:37:06.787 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+22:37:06.804 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:37:06.804 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+22:37:06.876 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:37:06.876 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1967 ms
+22:37:07.103 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+22:37:07.178 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+22:37:07.221 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+22:37:07.518 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+22:37:07.556 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:37:07.697 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3cb49121
+22:37:07.699 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:37:07.747 WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+22:37:08.909 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+22:37:09.131 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+22:37:09.580 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+22:37:09.974 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+22:37:11.274 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+22:37:11.281 INFO  b.j.converter.ConverterApplication - Started ConverterApplication in 6.903 seconds (process running for 7.867)
+22:40:14.792 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+22:40:14.794 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+22:40:14.797 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
