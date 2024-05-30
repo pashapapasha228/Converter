@@ -8,9 +8,13 @@ import by.java.converter.model.Convert;
 import by.java.converter.model.ConvertHistory;
 import by.java.converter.repository.ConvertHistoryRepository;
 import by.java.converter.repository.ConvertRepository;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.money.CurrencyUnit;
+import javax.money.Monetary;
 import javax.money.convert.MonetaryConversions;
 import org.javamoney.moneta.Money;
 import org.springframework.stereotype.Service;
@@ -115,5 +119,10 @@ public class ConverterService {
       ).toList();
 
     return new ResponseDto(converts);
+  }
+
+  public List<String> getAllPossibleCodes() {
+    return Monetary.getCurrencies().stream()
+        .map(CurrencyUnit::getCurrencyCode).sorted().toList();
   }
 }

@@ -6,15 +6,14 @@ import by.java.converter.service.ConverterService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Основной контроллер для работы с приложением.
  */
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/converter")
 @AllArgsConstructor
@@ -29,6 +28,13 @@ public class ConverterController {
     ResponseDto responseDto = converterService.getAll();
 
     return new ResponseEntity<>(responseDto, HttpStatus.OK);
+  }
+
+  @GetMapping("/getAllPossible")
+  public ResponseEntity<List<String>> getAllPossibleCodes() {
+    List<String> allPossible = converterService.getAllPossibleCodes();
+
+    return new ResponseEntity<>(allPossible, HttpStatus.OK);
   }
 
   /**
